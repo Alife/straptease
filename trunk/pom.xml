@@ -4,7 +4,7 @@
 	<groupId>iphone</groupId>
 	<artifactId>straptease</artifactId>
 	<packaging>jar</packaging>
-	<version>0.1</version>
+	<version>0.2</version>
 	<name>straptease</name>
 	<url>http://code.google.com/p/straptease/</url>
 	<scm>
@@ -36,6 +36,7 @@
 				<version>1.3.31-1</version>
 				<executions>
 					<execution>
+					<id>CoreGrahics</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -44,13 +45,34 @@
 							<packageName>straptease</packageName>
 							<includePaths>
 								<includePath>
-									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/usr/include
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers
 								</includePath>
 								<includePath>
 									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/
 								</includePath>
 							</includePaths>
 							<source>CoreGraphics.i</source>
+							<force>true</force>
+							<noWarn>302</noWarn>
+						</configuration>
+					</execution>
+					<execution>
+					<id>OpenGLES</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<cpp>false</cpp>
+							<packageName>straptease</packageName>
+							<includePaths>
+								<includePath>
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1
+								</includePath>
+								<includePath>
+									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/
+								</includePath>
+							</includePaths>
+							<source>OpenGLES.i</source>
 							<force>true</force>
 							<noWarn>302</noWarn>
 						</configuration>
