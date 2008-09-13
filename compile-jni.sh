@@ -2,11 +2,13 @@
 
 cd target/swig/c
 
+export SDK=/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk
+
 #compile:
-/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1 -v -c CoreGraphics.c -I /sw/include -I /Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/ -I /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/gcc/arm-apple-darwin9/4.0.1/include
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/arm-apple-darwin9-gcc-4.0.1 -v -c CoreGraphics.c -c OpenGLES.c -isysroot $SDK -I /sw/include
 
 #link:
-/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool -dynamic -framework CoreGraphics -framework UIKit -lgcc_s.1 -lSystem -o libstraptease.jnilib CoreGraphics.o -v -syslibroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/
+/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool -dynamic -framework CoreGraphics -framework UIKit -framework OpenGLES -lgcc_s.1 -lSystem -o libstraptease.jnilib CoreGraphics.o OpenGLES.o -v -syslibroot $SDK
 
 #sign:
 platform=/Developer/Platforms/iPhoneOS.platform
