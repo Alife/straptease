@@ -11,83 +11,74 @@
 %typemap(javaout) float * {
     return new joc.Pointer<Float>($jnicall);
   }
-
-
-//disabled usage of joc.* Objects, since boxing and unboxing does not work currently
-/*  
-//use jocstrap CGContext
-%typemap(jstype) CGContextRef "joc.Pointer<obc.CGContext>"
-%typemap(javain) CGContextRef "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGContextRef {
-    return new joc.Pointer<obc.CGContext>($jnicall);
+  
+//use jocstrap Pointers for byte *
+%typemap(jstype) byte * "joc.Pointer<Byte>"
+%typemap(javain) byte * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) byte * {
+    return new joc.Pointer<Byte>($jnicall);
   }
   
-//use jocstrap CGImage
-%typemap(jstype) CGImageRef "joc.Pointer<obc.CGImage>"
-%typemap(javain) CGImageRef "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGImageRef {
-    return new joc.Pointer<obc.CGImage>($jnicall);
+//use jocstrap Pointers for int *
+%typemap(jstype) int * "joc.Pointer<Integer>"
+%typemap(javain) int * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) int * {
+    return new joc.Pointer<Integer>($jnicall);
   }
-
-//use jocstrap CGColorSpace
-%typemap(jstype) CGColorSpaceRef "joc.Pointer<obc.CGColorSpace>"
-%typemap(javain) CGColorSpaceRef "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGColorSpaceRef {
-    return new joc.Pointer<obc.CGColorSpace>($jnicall);
-  }
- 
-//use jocstrap CGRect
-%ignore CGRect;
-%typemap(jstype) CGRect "obc.CGRect"
-%typemap(javain) CGRect "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGRect {
-	obc.CGRect tempRect=new obc.CGRect();
-	tempRect.unbox(new joc.Pointer<obc.CGRect>($jnicall));
-    return tempRect;
+  
+//use jocstrap Pointers for short *
+%typemap(jstype) short * "joc.Pointer<Short>"
+%typemap(javain) short * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) short * {
+    return new joc.Pointer<Short>($jnicall);
   }
 
-//use jocstrap CGSize
-%ignore CGSize;
-%typemap(jstype) CGSize "obc.CGSize"
-%typemap(javain) CGSize "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGSize {
-	obc.CGSize tempSize=new obc.CGSize();
-	tempSize.unbox(new joc.Pointer<obc.CGSize>($jnicall));
-    return tempSize;
+//use jocstrap Pointers for long *
+%typemap(jstype) long * "joc.Pointer<Long>"
+%typemap(javain) long * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) long * {
+    return new joc.Pointer<Long>($jnicall);
   }
   
-%typemap(jstype) const CGSize "obc.CGSize"
-%typemap(javain) const CGSize "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) const CGSize {
-	obc.CGSize tempSize=new obc.CGSize();
-	tempSize.unbox(new joc.Pointer<obc.CGSize>($jnicall));
-    return tempSize;
+%define JOCTYPE(swig_type,joc_type)
+%ignore swig_type ;
+%typemap(jstype) swig_type "joc.Pointer<joc_type>"
+%typemap(javain) swig_type "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type {
+	return new joc.Pointer<joc_type> ($jnicall);
   }
-  
-  
- //use jocstrap CGPoint
-%ignore CGPoint;
-%typemap(jstype) CGPoint "obc.CGPoint"
-%typemap(javain) CGPoint "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGPoint {
-	obc.CGPoint tempPoint=new obc.CGPoint();
-	tempPoint.unbox(new joc.Pointer<obc.CGPoint>($jnicall));
-    return tempPoint;
+%typemap(jstype) const swig_type "joc.Pointer<joc_type>"
+%typemap(javain) const swig_type "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) const swig_type {
+	return new joc.Pointer<joc_type>($jnicall);
   }
-  
- //use jocstrap CGAffineTransform
-%ignore CGAffineTransform;
-%typemap(jstype) CGAffineTransform "obc.CGAffineTransform"
-%typemap(javain) CGAffineTransform "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) CGAffineTransform {
-	obc.CGAffineTransform tempAffineTransform=new obc.CGAffineTransform();
-	tempAffineTransform.unbox(new joc.Pointer<obc.CGAffineTransform>($jnicall));
-    return tempAffineTransform;
-  }
- */
-   
+%enddef
+
+//CoreFoundation
+JOCTYPE(CFURLRef, obc.__CFURL)
+JOCTYPE(CFArrayRef, obc.__CFArray)
+JOCTYPE(CFDataRef, obc.__CFData)
+JOCTYPE(CFDictionaryRef, obc.__CFDictionary)
+JOCTYPE(CFStringRef, obc.__CFString)
+
+//CoreGraphics
+JOCTYPE(CGColorRef, obc.CGColor)
+JOCTYPE(CGColorSpaceRef, obc.CGColorSpace)
+JOCTYPE(CGPoint, obc.CGPoint)
+JOCTYPE(CGRect, obc.CGRect)
+JOCTYPE(CGSize, obc.CGSize)
+JOCTYPE(CGContextRef, obc.CGContext)
+JOCTYPE(CGImageRef, obc.CGImage)
+JOCTYPE(CGAffineTransform, obc.CGAffineTransform)
+JOCTYPE(CGPathRef, obc.CGPath)
+JOCTYPE(CGShadingRef, obc.CGShading)
+JOCTYPE(CGPDFDocumentRef, obc.CGPDFDocument)
+JOCTYPE(CGPDFPageRef, obc.CGPDFPage)
+
+
  typedef float CGFloat;
  typedef int uint32_t;
+ typedef byte uint8_t;
 // #define CG_EXTERN extern
 // #define CG_INLINE inline
  #define CG_EXTERN_C_BEGIN
