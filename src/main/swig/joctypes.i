@@ -5,41 +5,35 @@
     return new joc.Pointer<Object>($jnicall);
   }
   
-//use jocstrap Pointers for float *
-%typemap(jstype) float * "joc.Pointer<Float>"
-%typemap(javain) float * "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) float * {
-    return new joc.Pointer<Float>($jnicall);
+%define JAVATYPE(swig_type,joc_type)
+%typemap(jstype) swig_type * "joc.Pointer<joc_type>"
+%typemap(javain) swig_type * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type * {
+    return new joc.Pointer<joc_type>($jnicall);
   }
   
-//use jocstrap Pointers for byte *
-%typemap(jstype) byte * "joc.Pointer<Byte>"
-%typemap(javain) byte * "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) byte * {
-    return new joc.Pointer<Byte>($jnicall);
+%typemap(jstype) swig_type [] "joc.Pointer<joc_type>"
+%typemap(javain) swig_type [] "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type [] {
+    return new joc.Pointer<joc_type>($jnicall);
   }
   
-//use jocstrap Pointers for int *
-%typemap(jstype) int * "joc.Pointer<Integer>"
-%typemap(javain) int * "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) int * {
-    return new joc.Pointer<Integer>($jnicall);
+%typemap(jstype) swig_type [ANY] "joc.Pointer<joc_type>"
+%typemap(javain) swig_type [ANY] "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type [ANY] {
+    return new joc.Pointer<joc_type>($jnicall);
   }
-  
-//use jocstrap Pointers for short *
-%typemap(jstype) short * "joc.Pointer<Short>"
-%typemap(javain) short * "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) short * {
-    return new joc.Pointer<Short>($jnicall);
-  }
+%enddef
 
-//use jocstrap Pointers for long *
-%typemap(jstype) long * "joc.Pointer<Long>"
-%typemap(javain) long * "PointerSWIG.getAddress($javainput)"
-%typemap(javaout) long * {
-    return new joc.Pointer<Long>($jnicall);
-  }
-  
+//Primitive Arrays/Pointers
+JAVATYPE(byte, Byte)
+JAVATYPE(short, Short)
+JAVATYPE(int, Integer)
+JAVATYPE(long, Long)
+JAVATYPE(double, Double)
+JAVATYPE(float, Float)
+
+
 %define JOCTYPE(swig_type,joc_type)
 %ignore swig_type ;
 %typemap(jstype) swig_type "joc.Pointer<joc_type>"
@@ -47,10 +41,23 @@
 %typemap(javaout) swig_type {
 	return new joc.Pointer<joc_type> ($jnicall);
   }
+
 %typemap(jstype) const swig_type "joc.Pointer<joc_type>"
 %typemap(javain) const swig_type "PointerSWIG.getAddress($javainput)"
 %typemap(javaout) const swig_type {
 	return new joc.Pointer<joc_type>($jnicall);
+  }
+
+%typemap(jstype) swig_type * "joc.Pointer<joc_type>"
+%typemap(javain) swig_type * "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type * {
+	return new joc.Pointer<joc_type> ($jnicall);
+  }
+
+%typemap(jstype) swig_type [] "joc.Pointer<joc_type>"
+%typemap(javain) swig_type [] "PointerSWIG.getAddress($javainput)"
+%typemap(javaout) swig_type [] {
+	return new joc.Pointer<joc_type> ($jnicall);
   }
 %enddef
 

@@ -37,12 +37,12 @@
 %include <CGFont.h>
 %include <CGFunction.h>
 %include <CGGeometry.h>
-//%include <CGGradient.h>
+%include <CGGradient.h>
 %include <CGImage.h>
 %include <CGLayer.h>
 %include <CGPDFArray.h>
 %include <CGPDFContentStream.h>
-//%include <CGPDFContext.h>
+%include <CGPDFContext.h>
 %include <CGPDFDictionary.h>
 %include <CGPDFDocument.h>
 %include <CGPDFObject.h>
