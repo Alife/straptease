@@ -26,9 +26,12 @@
 %enddef
 
 //Primitive Arrays/Pointers
+JAVATYPE(unsigned char, Byte)
 JAVATYPE(byte, Byte)
 JAVATYPE(short, Short)
+JAVATYPE(unsigned short, Short)
 JAVATYPE(int, Integer)
+JAVATYPE(unsigned int, Integer)
 JAVATYPE(long, Long)
 JAVATYPE(double, Double)
 JAVATYPE(float, Float)
@@ -86,10 +89,16 @@ JOCTYPE(CGPDFPageRef, obc.CGPDFPage)
  typedef float CGFloat;
  typedef int uint32_t;
  typedef byte uint8_t;
+ 
+ #define CF_EXPORT
 // #define CG_EXTERN extern
 // #define CG_INLINE inline
  #define CG_EXTERN_C_BEGIN
  #define CG_EXTERN_C_END
+ 
+ #define TARGET_OS_IPHONE 1
+ #define __BEGIN_DECLS
+ #define __END_DECLS
  
  #define AVAILABLE_MAC_OS_X_VERSION_10_1_AND_LATER
  #define AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER
@@ -107,4 +116,10 @@ JOCTYPE(CGPDFPageRef, obc.CGPDFPage)
 #define CG_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0)
 #undef CG_AVAILABLE_BUT_DEPRECATED
 #define CG_AVAILABLE_BUT_DEPRECATED(__MAC_10_0, __MAC_10_5, __IPHONE_NA, __IPHONE_NA);
+
+
+#undef __OSX_AVAILABLE_STARTING
+#define __OSX_AVAILABLE_STARTING(__MAC_10_1,__IPHONE_NA)
+#undef __OSX_AVAILABLE_BUT_DEPRECATED
+#define __OSX_AVAILABLE_BUT_DEPRECATED(__MAC_10_4,__MAC_10_6,__IPHONE_NA,__IPHONE_NA);
  

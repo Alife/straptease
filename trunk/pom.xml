@@ -4,7 +4,7 @@
 	<groupId>iphone</groupId>
 	<artifactId>straptease</artifactId>
 	<packaging>jar</packaging>
-	<version>0.4</version>
+	<version>0.5</version>
 	<name>straptease</name>
 	<url>http://code.google.com/p/straptease/</url>
 	<scm>
@@ -45,10 +45,10 @@
 							<packageName>straptease</packageName>
 							<includePaths>
 								<includePath>
-									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.1.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers
 								</includePath>
 								<includePath>
-									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/
+									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.1.sdk/include/
 								</includePath>
 							</includePaths>
 							<source>CoreGraphics.i</source>
@@ -66,10 +66,10 @@
 							<packageName>straptease</packageName>
 							<includePaths>
 								<includePath>
-									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.1.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/ES1
 								</includePath>
 								<includePath>
-									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/
+									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.1.sdk/include/
 								</includePath>
 							</includePaths>
 							<source>OpenGLES.i</source>
@@ -87,13 +87,34 @@
 							<packageName>straptease</packageName>
 							<includePaths>
 								<includePath>
-									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.0.sdk/System/Library/Frameworks/OpenAL.framework/Headers
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.1.sdk/System/Library/Frameworks/OpenAL.framework/Headers
 								</includePath>
 								<includePath>
-									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.0.sdk/include/
+									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.1.sdk/include/
 								</includePath>
 							</includePaths>
 							<source>OpenAL.i</source>
+							<force>true</force>
+							<noWarn>302</noWarn>
+						</configuration>
+					</execution>
+					<execution>
+						<id>SystemConfiguration</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<cpp>false</cpp>
+							<packageName>straptease</packageName>
+							<includePaths>
+								<includePath>
+									/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS2.1.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers
+								</includePath>
+								<includePath>
+									/Developer/SDKs/iPhoneOS.sdk/Versions/iPhoneOS2.1.sdk/include/
+								</includePath>
+							</includePaths>
+							<source>SystemConfiguration.i</source>
 							<force>true</force>
 							<noWarn>302</noWarn>
 						</configuration>
