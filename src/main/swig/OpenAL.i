@@ -23,8 +23,10 @@
  
 %include "joctypes.i"
 
+%include "arrays_java.i";
+%apply int[] {int *};
+%apply int[] {unsigned int *};
+
 %include <al.h>
 %include <alc.h>
-//%include <OpenGLES/eglplatform.h>
-//%include <OpenGLES/egl.h>
 
