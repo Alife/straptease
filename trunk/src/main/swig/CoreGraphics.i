@@ -4,8 +4,7 @@
  /* Put header files here or function declarations like below */
  #include <jni.h>
  #include <CoreGraphics/CoreGraphics.h>
- 
- extern CGContextRef UIGraphicsGetCurrentContext(void);
+ #include <UIKit/UIGraphics.h>
  
  %}
  
@@ -24,7 +23,7 @@
  
 %include <CGBase.h>
 
- %include "joctypes.i"
+%include "joctypes.i"
 
 %include <CGAffineTransform.h>
 %include <CGBitmapContext.h>
@@ -57,6 +56,6 @@
 
 
 //this is not CoreGrahics, but UIKit, its here for convenience reasons only
-CGContextRef UIGraphicsGetCurrentContext (
-   void
-);
+#define UIKIT_EXTERN extern
+%ignore UIImage;
+%include <UIGraphics.h>
