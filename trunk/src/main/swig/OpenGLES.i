@@ -4,6 +4,7 @@
  /* Put header files here or function declarations like below */
  #include <jni.h>
  #include <OpenGLES/ES1/gl.h>
+ #include <OpenGLES/ES1/glext.h>
 
  %}
  
@@ -23,6 +24,5 @@
 %include "joctypes.i"
 
 %include <gl.h>
-//%include <OpenGLES/eglplatform.h>
-//%include <OpenGLES/egl.h>
+%include <glext.h>
 
