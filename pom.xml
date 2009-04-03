@@ -4,7 +4,7 @@
 	<groupId>iphone</groupId>
 	<artifactId>straptease</artifactId>
 	<packaging>jar</packaging>
-	<version>0.7</version>
+	<version>0.8</version>
 	<name>straptease</name>
 	<url>http://code.google.com/p/straptease/
 	</url>
@@ -189,6 +189,7 @@
 								<from>libstraptease.jnilib</from>
 							</jniFile>
 						</jniFiles>
+						<manualDependencies><string>firmware (>= 2.2.1)</string></manualDependencies>
 					</defaults>
 					<auxPackageMapURL>file:${basedir}/pm-iphoneos.xml
 					</auxPackageMapURL>
